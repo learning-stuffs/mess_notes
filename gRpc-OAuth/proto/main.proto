@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package wardrobe;
+
+import "google/api/annotations.proto";
+
+service Account {
+    rpc Create (Request) returns (Response) {
+        option (google.api.http) = {
+			post: "/api/v1/account",
+			body: "*"
+		};
+    }
+
+    rpc Login (Request) returns (Response) {
+        option (google.api.http) = {
+            post: "/api/v1/account/login",
+            body: "*"
+        };
+    }
+
+    rpc GetAccount (Request) returns (Response) {
+        option (google.api.http) = {
+            get: "/api/v1/account",
+        };
+    }
+}
+
+message Request{
+    string username = 1;
+    string password = 2;
+}
+
+message Response{
+    string Status  = 1;
+}

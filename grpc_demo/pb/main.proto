@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package wardrobe;
+
+import "google/api/annotations.proto";
+
+service Login {
+    rpc Hello (LoginInfo) returns (Response) {
+        option (google.api.http) = {
+			post: "/api/v1/account",
+			body: "*"
+		};
+    }
+}
+
+message LoginInfo{
+    string username = 1;
+    string password = 2;
+}
+
+message Response{
+    string Status  = 1;
+}
